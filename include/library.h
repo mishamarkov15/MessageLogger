@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <vector>
 
 namespace message_logger {
     class FileLogger {
@@ -14,6 +15,8 @@ namespace message_logger {
             kError,
             kCritical
         };
+
+        static const std::vector<std::string> levels;
 
         /**
          * Creates FileLogger instance.
