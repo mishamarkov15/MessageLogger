@@ -18,13 +18,6 @@ namespace message_logger {
         /**
          * Creates FileLogger instance.
          * @param file_name[in]: path to the file in which we want store records.
-         * @param level[in]: default level of records. Records with a lower level will not be logged.
-         */
-        FileLogger(const std::string& file_name, MessageLevel default_level);
-
-        /**
-         * Creates FileLogger instance.
-         * @param file_name[in]: path to the file in which we want store records.
          * @param level[in]: default level of records. Messages with a lower level will not be logged.
          */
         FileLogger(std::string file_name, MessageLevel default_level);
