@@ -7,6 +7,7 @@
 #include <sstream>
 #include <chrono>
 #include <ctime>
+#include <mutex>
 
 namespace message_logger {
     class FileLogger {
@@ -40,10 +41,16 @@ namespace message_logger {
          */
         MessageLevel getDefaultLevel() const noexcept;
 
+        /**
+         * Writing message go given in ctor file.
+         * @param level[in]: level of message.
+         * @param message[in]: message to be written.
+         */
         void logMessage(MessageLevel level, const std::string& message);
     private:
-        std::string file_name;
-        MessageLevel default_level;
+        std::mutex m_mutex;
+        std::string m_file_name;
+        MessageLevel m_default_level;
     };
 }
 
