@@ -24,5 +24,21 @@ namespace message_logger {
     FileLogger::MessageLevel FileLogger::getDefaultLevel() const noexcept {
         return default_level;
     }
+
+    void FileLogger::logMessage(FileLogger::MessageLevel level, const std::string &message) {
+        if (level < default_level) return;
+        std::ofstream fout(file_name, std::ios::app | std::ios::out);
+        if (!fout.is_open()) {
+            std::ostringstream os;
+            os << "File " << file_name << " was not open";
+            throw std::runtime_error(os.str());
+        }
+        auto now = std::time(nullptr);
+        auto tm = *std::localtime(&now);
+        fout << levels[static_cast<int>(level)];
+        fout << "[" << std::put_time(&tm, "%d.%m.%Y %H:%M:%S") << "]: ";
+        fout << message << '\n';
+        fout.close();
+    }
 }
 

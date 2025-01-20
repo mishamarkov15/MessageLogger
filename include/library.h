@@ -4,6 +4,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <chrono>
+#include <ctime>
 
 namespace message_logger {
     class FileLogger {
@@ -36,6 +39,8 @@ namespace message_logger {
          * @return default_level.
          */
         MessageLevel getDefaultLevel() const noexcept;
+
+        void logMessage(MessageLevel level, const std::string& message);
     private:
         std::string file_name;
         MessageLevel default_level;

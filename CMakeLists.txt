@@ -9,6 +9,8 @@ set_target_properties(MessageLogger PROPERTIES VERSION ${PROJECT_VERSION})
 
 set_target_properties(MessageLogger PROPERTIES PUBLIC_HEADER include/library.h)
 
+target_include_directories(MessageLogger PRIVATE .)
+
 include(GNUInstallDirs)
 install(TARGETS MessageLogger
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
